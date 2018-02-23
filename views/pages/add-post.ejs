@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+      <h1>Create New Post</h1>
+
+      <form id="add-post">
+        <div class="form-group">
+          <label class="control-label">Post Title</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-font"></i></span>
+              <input name="title" placeholder="Post Title" class="form-control" type="text" value="">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Text</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+              <textarea class="form-control" name="text" placeholder="Text of your post" rows="8"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="control-label">Picture Url</label>
+          <div class="inputGroupContainer">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+              <input class="form-control" type="url" name="pictureUrl" placeholder="Please paste a image url here">
+            </div>
+          </div>
+        </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+    <script>
+    $(document).ready(function() {
+      $('#add-post').bootstrapValidator({
+          // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+          feedbackIcons: {
+              valid: 'glyphicon glyphicon-ok',
+              invalid: 'glyphicon glyphicon-remove',
+              validating: 'glyphicon glyphicon-refresh'
+          },
+          fields: {
+            title: {
+                  validators: {
+                          stringLength: {
+                          min: 2,
+                      },
+                          notEmpty: {
+                          message: 'Please add a meaningful title'
+                      }
+                  }
+              },
+              text: {
+                  validators: {
+                        stringLength: {
+                          min: 10,
+                          max: 10000,
+                          message:'Please enter at least 10 characters and no more than 10000'
+                      },
+                      notEmpty: {
+                          message: 'Please supply a post text'
+                      }
+                    }
+                }
+
+
+
+              }
+          })
+          .on('success.form.bv', function(e) {
+              $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                  $('#add-post').data('bootstrapValidator').resetForm();
+
+              // Prevent form submission
+              e.preventDefault();
+
+              // Get the form instance
+              var $form = $(e.target);
+
+              // Get the BootstrapValidator instance
+              var bv = $form.data('bootstrapValidator');
+                $.post( "/new", $form.serialize(), function(data) {
+                  console.log( "success" );
+                  console.log(data)
+                //  announce("success", data)
+                window.location.href=data
+                })
+                .fail(function(err) {
+                  console.log( "error" );
+                })
+
+
+          });
+
+  });
+
+  function announce(type, data) {
+    var div=document.createElement("div")
+    div.appendChild(document.createTextNode(data));
+    div.className="alert alert-"+type;
+    var a=document.createElement("a");
+    a.appendChild(document.createTextNode("Return to main page"))
+    a.href="/"
+    div.appendChild(a)
+    document.querySelector("main").appendChild(div)
+  }
+
+
+    </script>
+</body>
+</html>

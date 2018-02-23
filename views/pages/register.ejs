@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+      <h1>Create New Account</h1>
+    <!--  <div>Welcome to Fake News Forum, please enter your username and password!</div> -->
+    <form id="register">
+      <div class="form-group">
+        <label class="control-label">Username</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input name="name" class="form-control" type="text">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Password</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-sunglasses"></i></span>
+            <input name="password" class="form-control" type="password">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Confirm Password</label>
+        <div class="inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-sunglasses"></i></span>
+            <input name="password2" class="form-control" type="password">
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+<script>
+$("#register").submit(function(e) {
+
+    $.ajax({
+           type: "POST",
+           url: "/user/register",
+           data: $("#register").serialize(), // serializes the form's elements.
+    }).success( function(data){
+       // show response from the php script.
+       announce("success", data)
+    })
+    .fail(function(err) {
+      console.log(err.responseText)
+      announce("danger", err.responseText)
+    })
+
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+});
+
+function announce(type, data) {
+  var div=document.createElement("div")
+  div.appendChild(document.createTextNode(data));
+  div.className="alert alert-"+type;
+  var a=document.createElement("a");
+  a.appendChild(document.createTextNode("Return to main page"))
+  a.href="/"
+  div.appendChild(a)
+  document.querySelector("main").appendChild(div)
+}
+</script>
+</body>
+</html>

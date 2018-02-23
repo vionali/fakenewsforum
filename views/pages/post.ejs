@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+    <main>
+      <article>
+        <h1><%= post.title %></h1>
+        <img src="<%= post.pictureUrl %>" class="img-rounded" alt="Cinque Terre" style="width: 100%; height: 80%">
+
+        <p id="postext"><%= post.text %></p>
+
+
+        <span><%= post.user %></span>
+        <span><%= post.formattedDate %></span>
+        <div>
+
+          <button type="button" class="btn btn-default vote-bttn <%= post.mayVote? "":"disabled" %>" data-vote-type="upvote" data-id="<%=post.id %>"  <%= post.mayVote? "":"disabled" %>>
+            <span class="glyphicon glyphicon-ok"></span> True: <span class="votes"><%= post.upvotes %></span>
+          </button>
+          <button type="button" class="btn btn-default vote-bttn <%= post.mayVote? "":"disabled" %>" data-vote-type="downvote" data-id="<%=post.id %>" <%= post.mayVote? "":"disabled" %>>
+            <span class="glyphicon glyphicon-remove"></span> Fake: <span class="votes"><%= post.downvotes %></span>
+          </button>
+        </div>
+      </article>
+      <section>
+        <h2>Comments</h2>
+        <div id="commentContainer">
+          <% post.comments.forEach(comment => { %>
+            <div data-commentid="<%=comment.id%>">
+              <span><%= comment.user %></span>
+              <span><%= comment.date %></span>
+              <h3 id="commentext"><%= comment.text %></h3>
+            </div>
+          <% }); %>
+        </div>
+        <h3>Add a Comment</h3>
+        <% if (loggedIn) { %>
+          <form id="comment-form" action="<%= post.id %>/comment">
+            <div class="form-group">
+              <label class="control-label">Comment</label>
+              <div class="inputGroupContainer">
+                <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+                  <textarea class="form-control" name="text" placeholder="Type your comment here" rows="4"></textarea>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+        <% } else { %>
+          <div class="login">Please <a href='/user/login'>log in</a> to make a comment</div>
+        <% } %>
+      </section>
+
+
+    </main>
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <script type="text/javascript" src="background.js"></script>
+
+</head>
+<body class="container">
+
+    <header>
+        <% include ../partials/header %>
+    </header>
+
+
+    <main>
+
+ <header class="header-image" >
+               <div class="headline">
+                <div class="container">
+                    <h1>Fact Check the World.  </h1>
+                    <h2> Have you ever wondered? </h2>
+
+  <p id="redefine"> ↓ Redefine Fake News ↓</p>
+           </div>
+            </div>
+
+
+        </header>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                          <% posts.forEach(post => { %>
+                            <tr class="">
+                                <td> <img src="<%= post.pictureUrl %>" class="img-thumbnail" alt="Cinque Terre" width="600" height="50"></td>
+                                <td class="tbl-title" ><a href="<%= post.id %>"><h4><%= post.title %></h4> </a><br><span ><%= post.text.substring(0, 30) %>...</span></td>
+                                <td><%= post.formattedDate %></td>
+                                <td><%= post.user %></td>
+                                <td>
+                                  <button type="button" class="btn btn-default vote-bttn <%= post.mayVote? "":"disabled" %>" data-vote-type="upvote" data-id="<%=post.id %>">
+                                     <span class="glyphicon glyphicon-ok"></span> True: <span class="votes"><%= post.upvotes %></span>
+                                  </button>
+                                  <button type="button" class="btn btn-default vote-bttn <%= post.mayVote? "":"disabled" %>" data-vote-type="downvote" data-id="<%=post.id %>">
+                                    <span class="glyphicon glyphicon-remove"></span> Fake: <span class="votes"><%= post.downvotes %></span>
+                                  </button>
+                                </td>
+
+                            </tr>
+                          <% }); %>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+
+    <footer>
+        <% include ../partials/footer %>
+    </footer>
+
+</body>
+</html>

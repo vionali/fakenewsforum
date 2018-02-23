@@ -1,0 +1,166 @@
+body{
+  background-color: black;/*rgb(1, 0, 0,0.01);*/
+  color:white;
+  font-size:15px;
+
+
+
+}
+
+.headline{
+  border:none;
+  margin-right:0;
+}
+.headline h1{
+  color:white;
+    font-size: 100px;
+    font-family:georgia;
+    height:auto;
+    margin-top: 170px;
+    background: #fff;
+    background: rgba(255,255,255,0.1);
+
+}
+.headline h2{
+  color:white;
+  font-family:"Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 25px;
+  background: #fff;
+  background: rgba(255,255,255,0.05);
+  margin-top: 150px;
+  margin-bottom:50px;
+  height:30px;
+  text-align:center;
+}
+.header-image-v {
+    display: block;
+    width: 100vw;
+    text-align: center;
+    background: url('maxresdefault.jpg') no-repeat center center scroll;
+    -webkit-background-size:cover;!important;
+    -moz-background-size:cover;
+    -o-background-size: cover;
+    background-size: cover; !important;
+}
+ul{
+  color:white;
+}
+.header-image {
+  background: url('maxresdefault.jpg') no-repeat center center scroll;
+background-size: cover;
+  margin-left: 0;
+  text-align: center;
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+.inputGroupContainer{
+    background-color: rgba(255,255,255,0.1);
+}
+.btn.btn-primary{
+   border-radius: 2px;
+   border: 0px;
+  color:white;
+  background-color:#FF8C91;
+}
+
+.navbar-default{
+  border:none;
+  margin-left:30px;
+  }
+  .nav.navbar-nav > li > a{
+  color:#FF8C91;
+  font-size:15px;
+  margin-top:50px;
+  margin-left:30px;
+}
+.navbar-default .navbar-brand{
+  font-size:20px;
+  margin-top:50px;
+}
+.nav.navbar-nav > li > .welcome{
+color:white;
+}
+.login a {color:#FF8C91;}
+.btn.btn-default{
+  background-color:transparent ;
+  color:#FF8C91;
+  border:none;
+}
+
+.btn.btn-default.disabled:hover{
+  background-color:#FF8C91;
+  color:black;
+  border: none;
+}
+.text-muted{
+  color:white;
+}
+a:-webkit-any-link{
+  font-size: 12px;
+}
+td {
+  font-size:15px;
+}
+.form-control{
+  background-color:white;
+
+}
+label.control-label{
+  color:white;
+  font-weight: 100;
+}
+.input-group-addon{
+  background-color:rgba(255,140,145,1);
+}
+*:before{
+  color:white;
+}
+.alert-success{
+  border-color: #031F2F;
+  background-color: #031F2F;
+}
+.alert-danger{
+  border-color: #BDA513;
+  background-color: #BDA513;
+}
+span.user{
+  color:#FF8C91;
+}
+h3, .h3{
+  font-size: 16px;
+  font-weight: 200;
+}
+.has-error{
+  background-color: transparent;
+  color:#BDA513;
+}
+lable.control-lable{
+  color:white;
+}
+.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label, .has-error .form-control-feedback{
+  color:white;
+  border-color:black;
+}
+.has-error .input-group-addon{
+  background-color: #BDA513;
+  color:white;
+  border-color: black;
+}
+.has-error .form-control, .has-error .form-control:focus, .has-error .input-group-addon{
+  border-color:black;
+}
+h3#commentext{
+  font-size:20px;
+}
+p#postext{
+  font-size:20px;
+font-weight: lighter;
+line-height: 150%;
+}
+.vote-bttn.disabled{
+  cursor: default;
+}
